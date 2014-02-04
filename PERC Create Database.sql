@@ -20,6 +20,7 @@ CONSTRAINT [Unique_CityZip] UNIQUE
 CREATE TABLE [dbo].[Patron](
 	[PatronID] [INT] PRIMARY KEY IDENTITY
 	--, [HouseholdID] [INT] References Household
+	, [PatronBarcode] [INT] UNIQUE
 	, [PatronFirstName] [nvarchar](20) NOT NULL
 	, [PatronLastName] [nvarchar](30) NOT NULL
 	, [SpouseName] [nvarchar](50)
@@ -42,7 +43,7 @@ CREATE TABLE [dbo].[MaterialType](
 )
 
 CREATE TABLE [dbo].[SpecificMaterial] (
-	[BarcodeID] [INT] PRIMARY KEY
+	[MaterialBarcodeID] [INT] PRIMARY KEY
 	, [MaterialID] [INT] REFERENCES Material NOT NULL
 	, [CheckedOut][bit] Not Null
 	, [Quality] [VarChar](10)
@@ -59,7 +60,7 @@ PRIMARY KEY([MaterialID], [PatronID], [TypeID])
 CREATE TABLE [dbo].[Checkout](
 	[CheckoutID][INT] PRIMARY KEY IDENTITY
 	, [PatronID][INT] REFERENCES Patron NOT NULL
-	, [BarcodeID][INT] REFERENCES SpecificMaterial NOT NULL
+	, [MaterialBarcodeID][INT] REFERENCES SpecificMaterial NOT NULL
 	, [DueDate][DATE] NOT NULL
 	, [CheckoutDate][DATE] NOT NULL
 	, [DateReturned][DATE]
