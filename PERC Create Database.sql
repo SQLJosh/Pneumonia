@@ -51,10 +51,10 @@ CREATE TABLE [dbo].[SpecificMaterial] (
 )
 
 CREATE TABLE [dbo].[Hold](
-	[MaterialID][INT] REFERENCES Material
+	[HoldID][INT] PRIMRY KEY IDENTITY
+	, [MaterialID][INT] REFERENCES Material
 	, [PatronID][INT] REFERENCES Patron
 	, [TypeID][INT] REFERENCES MaterialType
-PRIMARY KEY([MaterialID], [PatronID], [TypeID])
 )
 
 CREATE TABLE [dbo].[Checkout](
