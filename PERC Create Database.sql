@@ -25,7 +25,7 @@ CREATE TABLE [dbo].[Patron](
 	, [PatronLastName] [nvarchar](30) NOT NULL
 	, [SpouseName] [nvarchar](50)
 	, [Address1] [nvarchar](70) NOT NULL
-	, [Address2] [nvarchar](70) NOT NULL
+	, [Address2] [nvarchar](70)
 	, [TelephoneNumber] [varchar](10)
 	, [CellNumber] [varchar](10)
 	, [EmailAddress] [varchar](20)
@@ -51,7 +51,7 @@ CREATE TABLE [dbo].[SpecificMaterial] (
 )
 
 CREATE TABLE [dbo].[Hold](
-	[HoldID][INT] PRIMRY KEY IDENTITY
+	[HoldID][INT] PRIMARY KEY IDENTITY
 	, [MaterialID][INT] REFERENCES Material
 	, [PatronID][INT] REFERENCES Patron
 	, [TypeID][INT] REFERENCES MaterialType
